@@ -106,7 +106,8 @@ func tambahJadwal(daftarJadwal []JadwalTanding, jadwalBaru JadwalTanding) []Jadw
 	return append(daftarJadwal, jadwalBaru)
 }
 
-func updateJadwal(daftarJadwal []JadwalTanding, index int, timSatuBaru, timDuaBaru, waktuTandingBaru string) ([]JadwalTanding, bool) {
+func updateJadwal(daftarJadwal []JadwalTanding, index int, 
+	timSatuBaru, timDuaBaru, waktuTandingBaru string) ([]JadwalTanding, bool) {
 	if index < 0 || index >= len(daftarJadwal) {
 		return daftarJadwal, false
 	}
@@ -114,7 +115,8 @@ func updateJadwal(daftarJadwal []JadwalTanding, index int, timSatuBaru, timDuaBa
 	return daftarJadwal, true
 }
 
-func hapusJadwalByIndex(daftarJadwal []JadwalTanding, index int) ([]JadwalTanding, bool) {
+func hapusJadwalByIndex(daftarJadwal []JadwalTanding, 
+	index int) ([]JadwalTanding, bool) {
 	if index < 0 || index >= len(daftarJadwal) {
 		return daftarJadwal, false
 	}
