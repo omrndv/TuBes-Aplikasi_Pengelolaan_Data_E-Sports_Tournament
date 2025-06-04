@@ -8,37 +8,12 @@ import (
 )
 
 type Tim struct {
-	NamaTim             string
+	NamaTim string
 	Menang, Kalah, Poin int
 }
 
 type JadwalTanding struct {
 	TimSatu, TimDua, WaktuTanding string
-}
-
-type User struct {
-	Username string
-	Password string
-	Role     string
-}
-
-var semuaTim = []Tim{
-	{"ONIC Esports", 9, 3, 27},
-	{"EVOS Legends", 7, 5, 21},
-	{"Alter Ego", 6, 6, 18},
-	{"RRQ Hoshi", 10, 2, 30},
-	{"Bigetron Alpha", 5, 7, 15},
-}
-var semuaJadwal = []JadwalTanding{
-	{"ONIC Esports", "EVOS Legends", "2 Juni 2025, 19:00"},
-	{"RRQ Hoshi", "Alter Ego", "3 Juni 2025, 20:00"},
-	{"Bigetron Alpha", "ONIC Esports", "4 Juni 2025, 18:30"},
-	{"EVOS Legends", "RRQ Hoshi", "5 Juni 2025, 21:00"},
-}
-
-var daftarUser = []User{
-	{"admin", "admin123", "admin"},
-	{"penonton1", "view123", "penonton"},
 }
 
 func tambahTim(daftarTim []Tim, timBaru Tim) []Tim {
@@ -84,12 +59,13 @@ func SequentialSearch(daftarTim []Tim, namaYangDicari string) *Tim {
 }
 
 func BinarySearch(daftarTim []Tim, namaYangDicari string) *Tim {
-
 	low, high := 0, len(daftarTim)-1
 	namaYangDicari = strings.ToLower(namaYangDicari)
+
 	for low <= high {
 		mid := (low + high) / 2
 		namaTengah := strings.ToLower(daftarTim[mid].NamaTim)
+
 		if namaTengah == namaYangDicari {
 			return &daftarTim[mid]
 		} else if namaYangDicari < namaTengah {
@@ -156,17 +132,8 @@ func tampilJadwal(daftarJadwal []JadwalTanding) {
 	}
 }
 
-func autentikasiUser(username, password string) *User {
-	for _, user := range daftarUser {
-		if user.Username == username && user.Password == password {
-			return &user
-		}
-	}
-	return nil
-}
-
-func tampilMenuAdmin() {
-	fmt.Println("\n--- Menu Admin ---")
+func tampilMenu() {
+	fmt.Println("\n--- Menu Utama ---")
 	fmt.Println("1. Lihat Klasemen")
 	fmt.Println("2. Cari Tim")
 	fmt.Println("3. Tambah Tim Baru")
@@ -176,41 +143,48 @@ func tampilMenuAdmin() {
 	fmt.Println("7. Lihat Jadwal Pertandingan")
 	fmt.Println("8. Perbarui Jadwal Pertandingan")
 	fmt.Println("9. Hapus Jadwal Pertandingan")
-	fmt.Println("10. Logout")
+	fmt.Println("10. Keluar")
 	fmt.Print("Pilih opsi (angka aja ya kak): ")
 }
 
-func tampilMenuPenonton() {
-	fmt.Println("\n--- Menu Penonton ---")
-	fmt.Println("1. Lihat Klasemen")
-	fmt.Println("2. Cari Tim")
-	fmt.Println("3. Lihat Jadwal Pertandingan")
-	fmt.Println("4. Logout")
-	fmt.Print("Pilih opsi (angka aja ya kak): ")
-}
+func main() {
+	semuaTim := []Tim{
+		{"ONIC Esports", 9, 3, 27},
+		{"EVOS Legends", 7, 5, 21},
+		{"Alter Ego", 6, 6, 18},
+		{"RRQ Hoshi", 10, 2, 30},
+		{"Bigetron Alpha", 5, 7, 15},
+	}
 
-func menuAdmin(inputBaca *bufio.Scanner) {
+	semuaJadwal := []JadwalTanding{
+		{"ONIC Esports", "EVOS Legends", "2 Juni 2025, 19:00"},
+		{"RRQ Hoshi", "Alter Ego", "3 Juni 2025, 20:00"},
+		{"Bigetron Alpha", "ONIC Esports", "4 Juni 2025, 18:30"},
+		{"EVOS Legends", "RRQ Hoshi", "5 Juni 2025, 21:00"},
+	}
+
+	var pilihan int
+	inputBaca := bufio.NewScanner(os.Stdin)
+
 	for {
-		tampilMenuAdmin()
-		var pilihan int
-		_, err := fmt.Scan(&pilihan)
+		tampilMenu()
+		_, err := fmt.Scanln(&pilihan)
 		if err != nil {
 			fmt.Println("Input tidak valid, masukkan hanya angka ya.")
+			inputBaca.Scan()
 			continue
 		}
 
 		switch pilihan {
 		case 1:
 			tampilKlasemen(semuaTim)
-
 		case 2:
 			var caraCari int
 			fmt.Println("\nMau cari pakai cara apa?")
 			fmt.Println("1. Sequential Search")
 			fmt.Println("2. Binary Search (Diurutkan)")
 			fmt.Print("Pilih caranya, 1 atau 2: ")
-			_, err := fmt.Scan(&caraCari)
-
+			_, err := fmt.Scanln(&caraCari)
 			if err != nil || (caraCari != 1 && caraCari != 2) {
 				fmt.Println("Input tidak valid, masukkan angka aja ya dan cuman 1-2.")
 				break
@@ -236,22 +210,14 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 			} else {
 				fmt.Println("Maaf kak, tim yang kamu cari tidak ditemukan.")
 			}
-
 		case 3:
 			fmt.Print("Masukkan nama tim baru: ")
 			inputBaca.Scan()
 			namaTim := inputBaca.Text()
 
-			for _, tim := range semuaTim {
-				if strings.ToLower(tim.NamaTim) == strings.ToLower(namaTim) {
-					fmt.Println("Tim sudah terdaftar.")
-					break
-				}
-			}
-
 			var jumlahMenang, jumlahKalah, jumlahPoin int
 			fmt.Print("Berapa kali menang, kalah, dan poinnya (pisahkan dengan spasi yaa): ")
-			_, err := fmt.Scan(&jumlahMenang, &jumlahKalah, &jumlahPoin)
+			_, err := fmt.Scanln(&jumlahMenang, &jumlahKalah, &jumlahPoin)
 			if err != nil || jumlahMenang < 0 || jumlahKalah < 0 || jumlahPoin < 0 {
 				fmt.Println("Input tidak valid, masukkan angka aja ya dan harus positif.")
 				break
@@ -259,7 +225,6 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 
 			semuaTim = tambahTim(semuaTim, Tim{namaTim, jumlahMenang, jumlahKalah, jumlahPoin})
 			fmt.Println("Tim berhasil ditambahkan! Mantap.")
-
 		case 4:
 			fmt.Print("Masukkan nama tim yang mau diupdate: ")
 			inputBaca.Scan()
@@ -267,7 +232,7 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 
 			var menangBaru, kalahBaru, poinBaru int
 			fmt.Print("Update menang, kalah, dan poinnya (pisahkan dengan spasi yaa): ")
-			_, err := fmt.Scan(&menangBaru, &kalahBaru, &poinBaru)
+			_, err := fmt.Scanln(&menangBaru, &kalahBaru, &poinBaru)
 			if err != nil || menangBaru < 0 || kalahBaru < 0 || poinBaru < 0 {
 				fmt.Println("Input tidak valid, masukkan angka aja ya dan harus positif.")
 				break
@@ -280,10 +245,8 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 			} else {
 				fmt.Println("Timnya nggak ketemu, coba cek lagi namanya ya.")
 			}
-
 		case 5:
 			tampilKlasemen(semuaTim)
-
 			fmt.Print("\nMasukkan nama tim yang mau dihapus: ")
 			inputBaca.Scan()
 			namaTim := inputBaca.Text()
@@ -295,7 +258,6 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 			} else {
 				fmt.Println("Timnya nggak ada di daftar.")
 			}
-
 		case 6:
 			fmt.Print("Tim Pertama: ")
 			inputBaca.Scan()
@@ -309,15 +271,12 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 			inputBaca.Scan()
 			waktu := inputBaca.Text()
 
-			semuaJadwal = tambahJadwal(semuaJadwal, JadwalTanding{TimSatu: timA, TimDua: timB, WaktuTanding: waktu})
+			semuaJadwal = tambahJadwal(semuaJadwal, JadwalTanding{timA, timB, waktu})
 			fmt.Println("Jadwal pertandingan berhasil ditambahkan. Siap-siap nonton! gasss")
-
 		case 7:
 			tampilJadwal(semuaJadwal)
-
 		case 8:
 			tampilJadwal(semuaJadwal)
-
 			if len(semuaJadwal) == 0 {
 				fmt.Println("Tidak ada jadwal untuk diperbarui.")
 				break
@@ -325,7 +284,7 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 
 			var idJadwal int
 			fmt.Print("Masukkan ID jadwal yang ingin diperbarui: ")
-			_, err := fmt.Scan(&idJadwal)
+			_, err := fmt.Scanln(&idJadwal)
 			if err != nil || idJadwal <= 0 || idJadwal > len(semuaJadwal) {
 				fmt.Println("Input tidak valid. Masukkan ID jadwal yang ada dan berupa angka positif.")
 				break
@@ -353,10 +312,8 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 				fmt.Println("ID jadwal tidak valid atau jadwal tidak ditemukan.")
 			}
 			tampilJadwal(semuaJadwal)
-
 		case 9:
 			tampilJadwal(semuaJadwal)
-
 			if len(semuaJadwal) == 0 {
 				fmt.Println("Tidak ada jadwal untuk dihapus.")
 				break
@@ -364,7 +321,7 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 
 			var idJadwal int
 			fmt.Print("Masukkan ID jadwal yang ingin dihapus: ")
-			_, err := fmt.Scan(&idJadwal)
+			_, err := fmt.Scanln(&idJadwal)
 			if err != nil || idJadwal <= 0 || idJadwal > len(semuaJadwal) {
 				fmt.Println("Input tidak valid. Masukkan ID jadwal yang ada dan berupa angka positif.")
 				break
@@ -378,121 +335,11 @@ func menuAdmin(inputBaca *bufio.Scanner) {
 				fmt.Println("ID jadwal tidak valid atau jadwal tidak ditemukan.")
 			}
 			tampilJadwal(semuaJadwal)
-
 		case 10:
-			fmt.Println("Anda telah logout dari mode Admin.")
+			fmt.Println("Program selesai, terimakasihh! Sampai jumpa lagi.")
 			return
 		default:
 			fmt.Println("Pilihan kamu nggak ada di menu, coba lagi ya.")
-		}
-	}
-}
-
-func menuPenonton(inputBaca *bufio.Scanner) {
-	for {
-		tampilMenuPenonton()
-		var pilihan int
-		_, err := fmt.Scan(&pilihan)
-		if err != nil {
-			fmt.Println("Input tidak valid, masukkan hanya angka ya.")
-			continue
-		}
-
-		switch pilihan {
-		case 1:
-			tampilKlasemen(semuaTim)
-
-		case 2:
-			var caraCari int
-			fmt.Println("\nMau cari pakai cara apa?")
-			fmt.Println("1. Sequential Search")
-			fmt.Println("2. Binary Search (Diurutkan)")
-			fmt.Print("Pilih caranya, 1 atau 2: ")
-			_, err := fmt.Scan(&caraCari)
-
-			if err != nil || (caraCari != 1 && caraCari != 2) {
-				fmt.Println("Input tidak valid, masukkan angka aja ya dan cuman 1-2.")
-				break
-			}
-
-			fmt.Print("Ketik nama tim yang mau dicari: ")
-			inputBaca.Scan()
-			namaTim := inputBaca.Text()
-
-			var timKetemu *Tim
-			if caraCari == 1 {
-				timKetemu = SequentialSearch(semuaTim, namaTim)
-			} else if caraCari == 2 {
-				InsertionSortNama(semuaTim)
-				timKetemu = BinarySearch(semuaTim, namaTim)
-			} else {
-				fmt.Println("Pilihan cara mencari tidak ada.")
-				break
-			}
-
-			if timKetemu != nil {
-				fmt.Printf("Tim %s ketemu! Menang: %d, Kalah: %d, Poin: %d\n", timKetemu.NamaTim, timKetemu.Menang, timKetemu.Kalah, timKetemu.Poin)
-			} else {
-				fmt.Println("Maaf kak, tim yang kamu cari tidak ditemukan.")
-			}
-
-		case 3:
-			tampilJadwal(semuaJadwal)
-
-		case 4:
-			fmt.Println("Anda telah logout dari mode Penonton.")
-			return
-		default:
-			fmt.Println("Pilihan kamu nggak ada di menu, coba lagi ya.")
-		}
-	}
-}
-
-func main() {
-	inputBaca := bufio.NewScanner(os.Stdin)
-
-	for {
-		fmt.Println("\n--- Selamat Datang di Aplikasi Liga E-Sports ---")
-		fmt.Println("1. Login sebagai Admin")
-		fmt.Println("2. Lanjutkan sebagai Penonton")
-		fmt.Println("3. Keluar Aplikasi")
-		fmt.Print("Pilih tipe akses: ")
-
-		var tipeAksesPilihan int
-		_, err := fmt.Scan(&tipeAksesPilihan)
-		if err != nil {
-			fmt.Println("Input tidak valid. Masukkan angka 1, 2, atau 3 saja.")
-			continue
-		}
-
-		switch tipeAksesPilihan {
-		case 1:
-			fmt.Print("Masukkan username Admin: ")
-			inputBaca.Scan()
-			username := inputBaca.Text()
-
-			fmt.Print("Masukkan password Admin: ")
-			inputBaca.Scan()
-			password := inputBaca.Text()
-
-			userLogin := autentikasiUser(username, password)
-			if userLogin != nil && userLogin.Role == "admin" {
-				fmt.Printf("\nSelamat datang, Admin %s! Akses Penuh.\n", userLogin.Username)
-				menuAdmin(inputBaca)
-			} else {
-				fmt.Println("Username atau password salah, atau Anda bukan Admin.")
-			}
-
-		case 2:
-			fmt.Println("\nSelamat datang, Penonton! Akses Terbatas.")
-			menuPenonton(inputBaca)
-
-		case 3:
-			fmt.Println("Terima kasih telah menggunakan aplikasi ini. Sampai jumpa!")
-			return
-
-		default:
-			fmt.Println("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.")
 		}
 	}
 }
