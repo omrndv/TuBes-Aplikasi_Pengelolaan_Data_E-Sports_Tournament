@@ -115,8 +115,7 @@ func updateJadwal(daftarJadwal []JadwalTanding, index int,
 	return daftarJadwal, true
 }
 
-func hapusJadwalByIndex(daftarJadwal []JadwalTanding, 
-	index int) ([]JadwalTanding, bool) {
+func hapusJadwalByIndex(daftarJadwal []JadwalTanding, index int) ([]JadwalTanding, bool) {
 	if index < 0 || index >= len(daftarJadwal) {
 		return daftarJadwal, false
 	}
