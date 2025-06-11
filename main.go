@@ -48,6 +48,13 @@ func tampilKlasemen(daftarTim []Tim) {
 	}
 }
 
+func tampilTimTerbaik(daftarTim []Tim){
+	SelectionSort(daftarTim)
+	fmt.Println("\n--- Performa Tim Terbaik ---")
+	fmt.Printf("Tim %s menjadi tim terbaik dengan perolehan statistik yaitu %d menang, %d kalah, dan poin total sebanyak %d", 
+	daftarTim[0].NamaTim, daftarTim[0].Menang, daftarTim[0].Kalah, daftarTim[0].Poin)
+}
+
 func SequentialSearch(daftarTim []Tim, namaYangDicari string) *Tim {
 	namaYangDicari = strings.ToLower(namaYangDicari)
 	for i := range daftarTim {
@@ -144,7 +151,8 @@ func tampilMenu() {
 	fmt.Println("7. Lihat Jadwal Pertandingan")
 	fmt.Println("8. Perbarui Jadwal Pertandingan")
 	fmt.Println("9. Hapus Jadwal Pertandingan")
-	fmt.Println("10. Keluar")
+	fmt.Println("10. Melihat Team dengan Performa Terbaik")
+	fmt.Println("11. Keluar")
 	fmt.Print("Pilih opsi (angka aja ya kak): ")
 }
 
@@ -337,6 +345,9 @@ func main() {
 			}
 			tampilJadwal(semuaJadwal)
 		case 10:
+			tampilTimTerbaik(semuaTim)
+			fmt.Println()
+		case 11:
 			fmt.Println("Program selesai, terimakasihh! Sampai jumpa lagi.")
 			return
 		default:
