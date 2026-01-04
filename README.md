@@ -50,7 +50,7 @@ go run main.go
 ---
 
 ## 👨‍💻 Author
-**Nadiv**  
+**Muhammad Omar Nadiv**  
 Mahasiswa Teknik Informatika  
 💻 Tech Stack: **Golang**
 
