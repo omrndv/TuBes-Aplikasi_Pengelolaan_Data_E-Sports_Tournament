@@ -1,84 +1,59 @@
-🏆 Aplikasi Manajemen Turnamen E-Sports (CLI) – Golang
+# 🏆 Manajemen Turnamen E-Sports (CLI) – Golang
 
-Aplikasi Command Line Interface (CLI) yang dibangun menggunakan bahasa pemrograman Go (Golang) untuk mengelola data tim e-sports dan jadwal pertandingan. 
-Project ini menampilkan implementasi nyata konsep Struktur Data dan Algoritma seperti sorting dan searching tanpa menggunakan library eksternal.
+<p align="center">
+  <b>Aplikasi CLI sederhana untuk mengelola tim dan jadwal turnamen e-sports</b><br>
+  Dibangun menggunakan <b>Go (Golang)</b> dengan penerapan algoritma dasar
+</p>
 
-------------------------------------------------------------------------
+---
 
-🚀 Gambaran Umum
+## 🚀 Tentang Project
+Project ini merupakan aplikasi **Command Line Interface (CLI)** yang digunakan untuk mengelola:
+- Data tim e-sports
+- Klasemen turnamen
+- Jadwal pertandingan
 
-Aplikasi ini memungkinkan pengguna untuk: - Mengelola data tim dan
-klasemen turnamen - Mengatur jadwal pertandingan - Melakukan pencarian
-dan pengurutan data menggunakan algoritma klasik - Menampilkan tim
-dengan performa terbaik
+Aplikasi ini menekankan penerapan **Struktur Data dan Algoritma** tanpa library eksternal, sehingga cocok sebagai **project akademik dan portfolio GitHub**.
 
-Seluruh fitur dijalankan melalui terminal dengan alur interaksi yang
-sederhana dan mudah dipahami.
+---
 
-------------------------------------------------------------------------
+## ✨ Fitur Utama
+- 📊 Klasemen tim berdasarkan poin
+- ➕➖ Update & hapus data tim
+- 🔍 Pencarian tim (Sequential & Binary Search)
+- 🔃 Pengurutan data (Selection & Insertion Sort)
+- 🏆 Menampilkan tim dengan performa terbaik
+- 🗓️ Manajemen jadwal pertandingan
 
-✨ Fitur Utama
+---
 
-Manajemen Tim: - Menampilkan klasemen tim berdasarkan poin - Menambahkan
-tim baru - Memperbarui data tim (menang, kalah, poin) - Menghapus tim -
-Mencari tim menggunakan Sequential Search dan Binary Search
+## 🧠 Algoritma yang Digunakan
+| Kategori | Algoritma |
+|--------|----------|
+| Searching | Sequential Search, Binary Search |
+| Sorting | Selection Sort (Poin), Insertion Sort (Nama) |
 
-Manajemen Jadwal Pertandingan: - Menambah jadwal pertandingan -
-Menampilkan jadwal pertandingan - Memperbarui jadwal pertandingan -
-Menghapus jadwal pertandingan
+---
 
-Analisis Performa: - Menampilkan tim dengan performa terbaik berdasarkan
-poin tertinggi
+## ▶️ Cara Menjalankan
+```bash
+go run main.go
+```
 
-------------------------------------------------------------------------
+---
 
-🧠 Algoritma dan Konsep yang Digunakan
+## 🎯 Tujuan
+- Menerapkan algoritma searching & sorting
+- Melatih pemrograman **Golang berbasis CLI**
+- Menjadi bagian dari **portfolio backend development**
 
-Searching: - Sequential Search - Binary Search (data diurutkan terlebih
-dahulu)
+---
 
-Sorting: - Selection Sort (berdasarkan poin) - Insertion Sort
-(berdasarkan nama tim)
+## 👨‍💻 Author
+**Nadiv**  
+Mahasiswa Teknik Informatika  
+💻 Tech Stack: **Golang**
 
-Konsep Pemrograman: - Struct - Slice - Modular function - Validasi
-input - Menu berbasis CLI
+---
 
-------------------------------------------------------------------------
-
-🧱 Struktur Data
-
-Struct Tim: type Tim struct { NamaTim string Menang int Kalah int Poin
-int }
-
-Struct JadwalTanding: type JadwalTanding struct { TimSatu string TimDua
-string WaktuTanding string }
-
-------------------------------------------------------------------------
-
-▶️ Cara Menjalankan Program
-
-Prasyarat: - Go versi 1.20 atau lebih baru
-
-Langkah: 1. Clone repository 2. Masuk ke folder project 3. Jalankan
-perintah: go run main.go
-
-------------------------------------------------------------------------
-
-🎯 Tujuan Pengembangan
-
--   Menerapkan konsep Struktur Data dan Algoritma
--   Melatih pemrograman Golang berbasis CLI
--   Menjadi bagian dari portfolio pengembangan software
-
-------------------------------------------------------------------------
-
-👨‍💻 Author
-
-Nadiv
-Mahasiswa Teknik Informatika
-Fokus: Backend Development & Software Engineering
-
-------------------------------------------------------------------------
-
-Catatan: - Data masih bersifat in-memory - Aplikasi dijalankan melalui
-terminal - Dapat dikembangkan lebih lanjut ke versi database atau web
+⭐ Jika project ini menarik, silakan fork atau kembangkan lebih lanjut!
