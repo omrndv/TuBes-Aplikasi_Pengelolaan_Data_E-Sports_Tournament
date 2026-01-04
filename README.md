@@ -1,13 +1,7 @@
 🏆 Aplikasi Manajemen Turnamen E-Sports (CLI) – Golang
 
 Aplikasi Command Line Interface (CLI) yang dibangun menggunakan bahasa pemrograman Go (Golang) untuk mengelola data tim e-sports dan jadwal pertandingan. 
-Project ini menampilkan implementasi nyata konsep Struktur
-Data dan Algoritma seperti sorting dan searching tanpa menggunakan
-library eksternal.
-
-Project ini dibuat sebagai tugas akademik sekaligus portfolio GitHub
-untuk menunjukkan kemampuan pemrograman backend dan pemahaman algoritma
-dasar.
+Project ini menampilkan implementasi nyata konsep Struktur Data dan Algoritma seperti sorting dan searching tanpa menggunakan library eksternal.
 
 ------------------------------------------------------------------------
 
