@@ -13,7 +13,7 @@ Project ini merupakan aplikasi **Command Line Interface (CLI)** yang digunakan u
 - Klasemen turnamen
 - Jadwal pertandingan
 
-Aplikasi ini menekankan penerapan **Struktur Data dan Algoritma** tanpa library eksternal, sehingga cocok sebagai **project akademik dan portfolio GitHub**.
+Aplikasi ini menekankan penerapan **Struktur Data dan Algoritma** tanpa library eksternal, sehingga cocok sebagai **project akademik**.
 
 ---
 
@@ -45,7 +45,6 @@ go run main.go
 ## 🎯 Tujuan
 - Menerapkan algoritma searching & sorting
 - Melatih pemrograman **Golang berbasis CLI**
-- Menjadi bagian dari **portfolio backend development**
 
 ---
 
@@ -56,4 +55,4 @@ Mahasiswa Teknik Informatika
 
 ---
 
-⭐ Jika project ini menarik, silakan fork atau kembangkan lebih lanjut!
+⭐ Jika project ini menarik, silakan fork atau kembangkan lebih lanjut 
